@@ -27,14 +27,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| name               | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| name_kanji         | string | null: false |
-| name_kana          | string | null: false |
-| birth_day          | string | null: false |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| name               | string | null: false,              |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| family_name        | string | null: false               |
+| first_name         | string | null: false               |
+| family_name_kana   | string | null: false               |
+| first_name_kana    | string | null: false               |
+| birth_day          | string | null: false               |
 
 ### Association
 
@@ -45,14 +47,14 @@ Things you may want to cover:
 
 | Column              | Type       | Options                        |
 | --------------------| ---------- | -------------------------------|
-| image               | text       | null: false                    |
 | name                | string     | null: false                    |
-| category            | string     | null: false                    |
-| status              | string     | null: false                    |
-| delivery_fee        | string     | null: false                    |
-| shipping_area       | string     | null: false                    |
-| shipping_date       | string     | null: false                    |
-| selling_price       | string     | null: false                    |
+| description         | text       | null: false                    |
+| category_id         | integer    | null: false                    |
+| status_id           | integer    | null: false                    |
+| delivery_fee_id     | integer    | null: false                    |
+| shipping_area_id    | integer    | null: false                    |
+| shipping_date_id    | integer    | null: false                    |
+| selling_price       | integer    | null: false                    |
 | sales_commission    | string     | null: false                    |
 | sales_profit        | string     | null: false                    |
 | user                | references | null: false, foreign_key: true |
@@ -61,10 +63,10 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- has_one :purchase_records
+- has_one :purchase_record
 
 
-## purchase_record テーブル
+## purchase_records テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -79,12 +81,12 @@ Things you may want to cover:
 
 
 
-## delivery_address テーブル
+## delivery_addresses テーブル
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
 | post_code           | string     | null: false                    |
-| prefectures         | string     | null: false                    |
+| prefectures_id      | integer    | null: false                    |
 | municipalities      | string     | null: false                    |
 | address             | string     | null: false                    |
 | building_name       | string     |                    |
@@ -93,4 +95,4 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :purchase_records
+- belongs_to :purchase_record
